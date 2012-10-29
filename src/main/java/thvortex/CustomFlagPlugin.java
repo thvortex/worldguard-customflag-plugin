@@ -32,8 +32,8 @@ import com.sk89q.worldguard.protection.flags.InvalidFlagFormat;
 
 public class CustomFlagPlugin extends JavaPlugin {
     private class URLFlag extends CustomFlag {
-        URLFlag() {
-            super("url", RegionGroup.ALL);
+        URLFlag(Plugin plugin) {
+            super("url", plugin, RegionGroup.ALL);
         }
     
         @Override
@@ -50,6 +50,6 @@ public class CustomFlagPlugin extends JavaPlugin {
 
     public void onEnable() {
         Plugin plugin = getServer().getPluginManager().getPlugin("WorldGuard");
-        ((WorldGuardPlugin)plugin).addCustomFlag(new URLFlag(), this);
+        ((WorldGuardPlugin)plugin).addCustomFlag(new URLFlag(this), this);
     }
 }
